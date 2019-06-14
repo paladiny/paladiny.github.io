@@ -1,10 +1,10 @@
 # Site settings
-title: 为零 Blog
-SEOTitle: 为零的博客 | Willynn Blog
+title: Willynn Notes
+SEOTitle: 为零笔记 | Willynn Notes
 header-img: img/home-bg.jpg
 email: paladinwyh@gmail.com
 description: "学习路上的笔记。"
-keyword: "Willynn, 为零, paladiny, v2ray, 为零的博客, Willynn Blog, 博客, 个人网站, 互联网，美食，烹饪，家常菜"
+keyword: "Willynn, 为零, paladiny, v2ray, 科学上网, 为零的博客, 为零笔记, Willynn Notes, Willynn Blog, 笔记, 博客, 个人网站, 互联网，美食，烹饪，家常菜"
 url: "https://paladiny.github.io"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 
