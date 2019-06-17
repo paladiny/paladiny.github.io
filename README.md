@@ -1,1 +1,1 @@
-博客模板为huxpro.github.io
+博客模板为[jekyll/huxpro](https://github.com/Huxpro/huxpro.github.io)，模板作者博客[Hux Blog](https://huangxuan.me/)
