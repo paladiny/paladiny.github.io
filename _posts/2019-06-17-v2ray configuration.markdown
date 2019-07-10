@@ -28,6 +28,7 @@ tags:
 vim /etc/ssh/sshd_config
 PermitRootLogin 是否允许以root账号登录
 PasswordAuthentication 是否允许密码登录
+service sshd restart `重启sshd`
 
 v2ray安装
 参考文档：https://toutyrater.github.io/prep/install.html ， https://www.v2ray.com/chapter_00/install.html 
