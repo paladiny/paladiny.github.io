@@ -30,7 +30,15 @@ PermitRootLogin 是否允许以root账号登录
 PasswordAuthentication 是否允许密码登录
 service sshd restart `重启sshd`
 
-v2ray安装
+##### nginx安装
+```apt-get update```更新Debian OS源
+```apt-get install nginx```从Debian OS源安装nginx
+默认安装在/etc/nginx, nginx.conf为系统配置文件，nginx/sites-available/default为可用的web项目配置文件，nginx/sites-enabled/default是nginx/sites-available/default的软链接，系统读取sites-available/default作为配置文件。
+
+##### Let's Encrypt安装ssl证书
+
+
+##### v2ray安装
 参考文档：https://toutyrater.github.io/prep/install.html ， https://www.v2ray.com/chapter_00/install.html 
 V2Ray 提供了一个在 Linux 中的自动化安装脚本。这个脚本会自动检测有没有安装过 V2Ray，如果没有，则进行完整的安装和配置；如果之前安装过 V2Ray，则只更新 V2Ray 二进制程序而不更新配置。
 ```bash <(curl -L -s https://install.direct/go.sh)``` 
