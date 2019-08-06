@@ -36,6 +36,7 @@ service sshd restart `重启sshd`
 默认安装在/etc/nginx, nginx.conf为系统配置文件，nginx/sites-available/default为可用的web项目配置文件，nginx/sites-enabled/default是nginx/sites-available/default的软链接，系统读取sites-available/default作为配置文件。
 
 ##### Let's Encrypt安装ssl证书
+参考https://certbot.eff.org/lets-encrypt/debianstretch-nginx
 
 
 ##### v2ray安装
