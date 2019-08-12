@@ -37,6 +37,19 @@ service sshd restart `重启sshd`
 
 ##### Let's Encrypt安装ssl证书
 参考https://certbot.eff.org/lets-encrypt/debianstretch-nginx
+添加源 deb http://deb.debian.org/debian buster-backports main 到/etc/apt/sources.list 
+```apt-get update``` 更新源
+```apt-get install certbot python-certbot-nginx -t stretch-backports``` 安装Certbot 
+```certbot --nginx``` 获取证书并且让certbot自动配置nginx 
+安装时有几个选择和输入项：
+1，输入邮箱
+2，是否同意协议。
+3，是否愿意公开邮箱地址给Electronic Frontier Foundation用来接收相关资讯和信息邮件
+4，属于域名
+安装完成后，
+证书位置：/etc/letsencrypt/live/域名/fullchain.pem
+密钥：/etc/letsencrypt/live/域名/privkey.pem
+证书有效期3个月，Certbot会自动更新证书有效期，```certbot renew --dry-run```可用于测试自动更新是否可用。
 
 
 ##### v2ray安装
