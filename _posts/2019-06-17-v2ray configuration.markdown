@@ -45,7 +45,7 @@ service sshd restart `重启sshd`
 1，输入邮箱
 2，是否同意协议。
 3，是否愿意公开邮箱地址给Electronic Frontier Foundation用来接收相关资讯和信息邮件
-4，属于域名
+4，输入域名
 安装完成后，
 证书位置：/etc/letsencrypt/live/域名/fullchain.pem
 密钥：/etc/letsencrypt/live/域名/privkey.pem
@@ -59,3 +59,19 @@ V2Ray 提供了一个在 Linux 中的自动化安装脚本。这个脚本会自�
 安装完后修改配置文件 ```vim /etc/v2ray/config.json``` 
 
 
+##### v2ray+tls+websocket配置
+### nginx配置
+参考文档：新V2Ray白话文指南 https://guide.v2fly.org/
+修改nginx安装目录下sites-available/default 文件，在SSL configuration配置项里，添加
+```
+location /var/www/html { # 与 V2Ray 配置中的 path 保持一致
+        proxy_redirect off;
+        proxy_pass http://127.0.0.1:10000; #假设WebSocket监听在环回地址的10000端口上
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $http_host;
+        # Show real IP in v2ray access.log
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+```
