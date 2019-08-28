@@ -15,7 +15,7 @@ tags:
 
 
 
-##### GCP创建服务器
+### GCP创建服务器
 机器类型选微型，最便宜的那种。地区优先香港，其他所有配置不动，防火墙规则勾选http和https流量。
 创建完使用google提供的网页ssh工具登录。修改root密码:sudo passwd root,修改完成后用命令 su  获取root权限。
 修改ssh配置文件以便客户端登录
@@ -24,13 +24,13 @@ PermitRootLogin 是否允许以root账号登录
 PasswordAuthentication 是否允许密码登录
 service sshd restart `重启sshd`
 
-##### 免密登录服务器
+### 免密登录服务器
 客户端命令： `ssh-keygen`<br>
 按3次回车生成公钥私钥。（第一次回车时要求输入存密钥的文件名，按回车则为默认/root/.ssh/id_rsa，第二次为加密密码，按回车默认密码为空，第三次回车则是密码再次确认）。
 在服务器新建文件/root/.ssh/authorized_keys，把客户端公钥/root/.ssh/id_rsa.pub的内容复制到服务器authorized_keys文件中。
 客户端ssh链接服务器，则可不用输入密码免密登录。
 
-##### 查看服务器回城线路 
+### 查看服务器回城线路 
 参考文档：https://www.xiaoz.me/archives/11769
 ```wget https://cdn.ipip.net/17mon/besttrace4linux.zip```下载BestTrace，其他对应版本可在https://www.ipip.net/ 找到
 ```unzipi besttrace4linux.zip```解压
@@ -38,12 +38,12 @@ service sshd restart `重启sshd`
 ```./besttrace -q1 -g cn IP```执行该命令可查看回程路线 
 ```./besttrace --help```可查看命令参数
 
-##### nginx安装
+### nginx安装
 ```apt-get update```更新Debian OS源
 ```apt-get install nginx```从Debian OS源安装nginx
 默认安装在/etc/nginx, nginx.conf为系统配置文件，nginx/sites-available/default为可用的web项目配置文件，nginx/sites-enabled/default是nginx/sites-available/default的软链接，系统读取sites-available/default作为配置文件。
 
-##### Let's Encrypt安装ssl证书
+### Let's Encrypt安装ssl证书
 参考https://certbot.eff.org/lets-encrypt/debianstretch-nginx
 添加源 deb http://deb.debian.org/debian buster-backports main 到/etc/apt/sources.list 
 ```apt-get update``` 更新源
@@ -60,16 +60,17 @@ service sshd restart `重启sshd`
 证书有效期3个月，Certbot会自动更新证书有效期，```certbot renew --dry-run```可用于测试自动更新是否可用。
 
 
-##### v2ray安装
+### v2ray安装
 参考文档：https://toutyrater.github.io/prep/install.html ， https://www.v2ray.com/chapter_00/install.html 
 V2Ray 提供了一个在 Linux 中的自动化安装脚本。这个脚本会自动检测有没有安装过 V2Ray，如果没有，则进行完整的安装和配置；如果之前安装过 V2Ray，则只更新 V2Ray 二进制程序而不更新配置。
 ```bash <(curl -L -s https://install.direct/go.sh)``` 
 安装完后修改配置文件 ```vim /etc/v2ray/config.json``` 
 
 
-##### v2ray+tls+websocket配置
+### v2ray+tls+websocket配置
 参考文档：新V2Ray白话文指南 https://guide.v2fly.org/
-### nginx配置
+
+###### nginx配置
 修改nginx安装目录下sites-available/default 文件，在SSL configuration配置项里，添加
 ```
 location /test { # 随便填，与 V2Ray 配置中的 path 保持一致即可
@@ -84,7 +85,7 @@ location /test { # 随便填，与 V2Ray 配置中的 path 保持一致即可
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 ```
 
-### v2ray配置
+##### v2ray配置
 ```
 {
   "log": {
@@ -144,7 +145,7 @@ location /test { # 随便填，与 V2Ray 配置中的 path 保持一致即可
 
 ```
 
-##### 开启Google BBR
+### 开启Google BBR
 参考文档：https://zocodev.com/debian-9-enable-google-bbr.html
 BBR需要Linux系统内核为4.9以上，Debian 9 系统内核为4.9，自带BBR，无需安装，只需配置开启即可。
 ```
