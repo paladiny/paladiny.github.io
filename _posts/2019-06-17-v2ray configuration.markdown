@@ -15,12 +15,6 @@ tags:
 
 
 
-##### 免密登录服务器
-客户端命令： `ssh-keygen`<br>
-按3次回车生成公钥私钥。（第一次回车时要求输入存密钥的文件名，按回车则为默认/root/.ssh/id_rsa，第二次为加密密码，按回车默认密码为空，第三次回车则是密码再次确认）。
-在服务器新建文件/root/.ssh/authorized_keys，把客户端公钥/root/.ssh/id_rsa.pub的内容复制到服务器authorized_keys文件中。
-客户端ssh链接服务器，则可不用输入密码免密登录。
-
 ##### GCP创建服务器
 机器类型选微型，最便宜的那种。地区优先香港，其他所有配置不动，防火墙规则勾选http和https流量。
 创建完使用google提供的网页ssh工具登录。修改root密码:sudo passwd root,修改完成后用命令 su  获取root权限。
@@ -29,6 +23,20 @@ vim /etc/ssh/sshd_config
 PermitRootLogin 是否允许以root账号登录
 PasswordAuthentication 是否允许密码登录
 service sshd restart `重启sshd`
+
+##### 免密登录服务器
+客户端命令： `ssh-keygen`<br>
+按3次回车生成公钥私钥。（第一次回车时要求输入存密钥的文件名，按回车则为默认/root/.ssh/id_rsa，第二次为加密密码，按回车默认密码为空，第三次回车则是密码再次确认）。
+在服务器新建文件/root/.ssh/authorized_keys，把客户端公钥/root/.ssh/id_rsa.pub的内容复制到服务器authorized_keys文件中。
+客户端ssh链接服务器，则可不用输入密码免密登录。
+
+##### 查看服务器回城线路 
+参考文档：https://www.xiaoz.me/archives/11769
+```wget https://cdn.ipip.net/17mon/besttrace4linux.zip```下载BestTrace，其他对应版本可在https://www.ipip.net/ 找到
+```unzipi besttrace4linux.zip```解压
+```chmod +x besttrace```给besttrace文件添加执行权限
+```./besttrace -q1 -g cn IP```执行该命令可查看回程路线 
+```./besttrace --help```可查看命令参数
 
 ##### nginx安装
 ```apt-get update```更新Debian OS源
@@ -60,11 +68,11 @@ V2Ray 提供了一个在 Linux 中的自动化安装脚本。这个脚本会自�
 
 
 ##### v2ray+tls+websocket配置
-### nginx配置
 参考文档：新V2Ray白话文指南 https://guide.v2fly.org/
+### nginx配置
 修改nginx安装目录下sites-available/default 文件，在SSL configuration配置项里，添加
 ```
-location /var/www/html { # 与 V2Ray 配置中的 path 保持一致
+location /test { # 随便填，与 V2Ray 配置中的 path 保持一致即可
         proxy_redirect off;
         proxy_pass http://127.0.0.1:10000; #假设WebSocket监听在环回地址的10000端口上
         proxy_http_version 1.1;
@@ -75,3 +83,79 @@ location /var/www/html { # 与 V2Ray 配置中的 path 保持一致
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 ```
+
+### v2ray配置
+```
+{
+  "log": {
+    "loglevel": "warning",
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log"
+  },
+  "inbounds": [{
+    "port": 10000,
+    "listen": "127.0.0.1", //只监听 127.0.0.1，避免除本机外的机器探测到开放了 10000 端口
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "33333333-3333-3333-3333-333333333333", //可以自行找工具生成uuid，也可用安装v2ray时自带的工具生成 /usr/bin/v2ray/v2ctl uuid
+          "level": 1,
+          "alterId": 64
+        },
+        {
+          "id": "22222222-2222-2222-2222-222222222222",
+          "level": 1,
+          "alterId": 64
+        },
+        {
+          "id": "11111111-1111-1111-1111-111111111111",
+          "level": 1,
+          "alterId": 64
+        }
+
+      ]
+    },
+    "streamSettings": {
+        "network": "ws",
+        "wsSettings": {
+            "path":"/test" //与nginx的location保持一致
+        }
+    }
+  }],
+  "outbounds": [{
+    "protocol": "freedom",
+    "settings": {}
+  },{
+    "protocol": "blackhole",
+    "settings": {},
+    "tag": "blocked"
+  }],
+  "routing": {
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "blocked"
+      }
+    ]
+  }
+}
+
+```
+
+##### 开启Google BBR
+参考文档：https://zocodev.com/debian-9-enable-google-bbr.html
+BBR需要Linux系统内核为4.9以上，Debian 9 系统内核为4.9，自带BBR，无需安装，只需配置开启即可。
+```
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
+```
+如果正常执行之后没有报错的话，需要重启一下系统，让配置生效。
+重启之后，执行如下命令查看配置是否成功生效：
+```
+root@zocodev:~# lsmod | grep bbr
+tcp_bbr                20480  0
+```
+如果有如上类似输出，则证明Google BBR配置成功了。
