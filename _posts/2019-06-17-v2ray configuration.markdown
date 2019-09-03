@@ -168,9 +168,9 @@ tcp_bbr                20480  0
 ### 客户端设置
 官网有各平台图形客户端推荐：https://www.v2ray.com/awesome/tools.html<br>
 本人使用工具：<br>
-iOS：Shadowrocket<br>
+iOS：[Shadowrocket](https://itunes.apple.com/us/app/shadowrocket/id932747118?mt=8)<br>
 MacOS：<br>
-Windows：V2RayN<br>
+Windows：[V2RayN](https://github.com/2dust/v2rayN)<br>
 路由：梅林改固件软件中心里的科学上网插件可使用v2ray<br>
 配置参数（不同工具的参数名不一定完全一样）：<br>
 节点类型:Vmess<br>
