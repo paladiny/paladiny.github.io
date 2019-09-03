@@ -39,24 +39,28 @@ service sshd restart `重启sshd`<br>
 ```./besttrace --help```可查看命令参数<br>
 
 ### nginx安装
-```apt-get update```更新Debian OS源<br>
-```apt-get install nginx```从Debian OS源安装nginx<br>
+```
+apt-get update #更新Debian OS源
+apt-get install nginx #从Debian OS源安装nginx
+```
 默认安装在/etc/nginx, nginx.conf为系统配置文件，nginx/sites-available/<br>default为可用的web项目配置文件，nginx/sites-enabled/default是nginx/sites-available/default的软链接，系统读取sites-available/default作为配置文件。<br>
 
 ### Let's Encrypt安装ssl证书
 参考https://certbot.eff.org/lets-encrypt/debianstretch-nginx<br>
-添加源 deb http://deb.debian.org/debian buster-backports main 到/etc/apt/sources.list <br>
-```apt-get update``` 更新源<br>
-```apt-get install certbot python-certbot-nginx -t stretch-backports``` 安装Certbot <br>
-```certbot --nginx``` 获取证书并且让certbot自动配置nginx <br>
+```
+deb http://deb.debian.org/debian buster-backports main #添加源到/etc/apt/sources.list
+apt-get update #更新源
+apt-get install certbot python-certbot-nginx -t stretch-backports #安装Certbot
+certbot --nginx #获取证书并且让certbot自动配置nginx
+```
 安装时有几个选择和输入项：<br>
-1，输入邮箱<br>
-2，是否同意协议。<br>
-3，是否愿意公开邮箱地址给Electronic Frontier Foundation用来接收相关资讯和信息邮件<br>
-4，输入域名<br>
-安装完成后，
-证书位置：/etc/letsencrypt/live/域名/fullchain.pem
-密钥：/etc/letsencrypt/live/域名/privkey.pem
+1. 输入邮箱<br>
+2. 是否同意协议。<br>
+3. 是否愿意公开邮箱地址给Electronic Frontier Foundation用来接收相关资讯和信息邮件<br>
+4. 输入域名<br>
+安装完成后，<br>
+证书位置：/etc/letsencrypt/live/域名/fullchain.pem<br>
+密钥：/etc/letsencrypt/live/域名/privkey.pem<br>
 证书有效期3个月，Certbot会自动更新证书有效期，```certbot renew --dry-run```可用于测试自动更新是否可用。<br>
 
 
@@ -64,13 +68,12 @@ service sshd restart `重启sshd`<br>
 参考文档：https://toutyrater.github.io/prep/install.html ， https://www.v2ray.com/chapter_00/install.html <br>
 V2Ray 提供了一个在 Linux 中的自动化安装脚本。这个脚本会自动检测有没有安装过 V2Ray，如果没有，则进行完整的安装和配置；如果之前安装过 V2Ray，则只更新 V2Ray 二进制程序而不更新配置。<br>
 ```bash <(curl -L -s https://install.direct/go.sh)``` <br>
-安装完后修改配置文件 ```vim /etc/v2ray/config.json``` <br>
 
 
 ### v2ray+tls+websocket配置
 参考文档：新V2Ray白话文指南 https://guide.v2fly.org/<br>
 
-###### nginx配置
+##### nginx配置
 修改nginx安装目录下sites-available/default 文件，在SSL configuration配置项里，添加<br>
 ```
 location /test { # 随便填，与 V2Ray 配置中的 path 保持一致即可
@@ -86,6 +89,7 @@ location /test { # 随便填，与 V2Ray 配置中的 path 保持一致即可
 ```
 
 ##### v2ray配置
+修改配置文件 ```vim /etc/v2ray/config.json``` <br>
 ```
 {
   "log": {
@@ -162,3 +166,20 @@ tcp_bbr                20480  0
 如果有如上类似输出，则证明Google BBR配置成功了。<br>
 
 ### 客户端设置
+官网有各平台图形客户端推荐：https://www.v2ray.com/awesome/tools.html<br>
+本人使用工具：<br>
+iOS：Shadowrocket<br>
+MacOS：<br>
+Windows：V2RayN<br>
+路由：梅林改固件软件中心里的科学上网插件可使用v2ray<br>
+配置参数（不同工具的参数名不一定完全一样）：<br>
+节点类型:Vmess<br>
+address:填写nginx配置的域名<br>
+port:443<br>
+id:对应服务器v2ray配置文件中的id<br>
+alterId:对应服务器v2ray配置文件中的alterId<br>
+security:auto即可,也可用chacha20<br>
+network:ws<br>
+remarks:别名，随便填，方便自己识别<br>
+path:对应服务器v2ray配置文件中的path<br>
+底层传输安全:tls<br>
