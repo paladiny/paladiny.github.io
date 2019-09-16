@@ -183,3 +183,7 @@ network:ws<br>
 remarks:别名，随便填，方便自己识别<br>
 path:对应服务器v2ray配置文件中的path<br>
 底层传输安全:tls<br>
+
+### 监测是否被墙
+https://www.toolsdaquan.com/ipcheck/ <br>
+http://ping.pe/ <br>
