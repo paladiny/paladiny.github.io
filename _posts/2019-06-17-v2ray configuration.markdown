@@ -33,7 +33,7 @@ service sshd restart `重启sshd`<br>
 ### 查看服务器回城线路 
 参考文档：https://www.xiaoz.me/archives/11769<br>
 ```wget https://cdn.ipip.net/17mon/besttrace4linux.zip```下载BestTrace，其他对应版本可在https://www.ipip.net/ 找到<br>
-```unzipi besttrace4linux.zip```解压<br>
+```unzip besttrace4linux.zip```解压<br>
 ```chmod +x besttrace```给besttrace文件添加执行权限<br>
 ```./besttrace -q1 -g cn IP```执行该命令可查看回程路线 <br>
 ```./besttrace --help```可查看命令参数<br>
