@@ -45,7 +45,7 @@ certbot certonly -d "*.domain.com" --manual --preferred-challenges dns-01
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator manual, Installer None
 Enter email address (used for urgent renewal and security notices) (Enter 'c' to
-cancel): <font color=red>**在此填入邮箱地址**</font>
+cancel): #在此填入邮箱地址
 ```
 ```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
 ```
@@ -54,7 +54,7 @@ https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
 agree in order to register with the ACME server at
 https://acme-v02.api.letsencrypt.org/directory
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-(A)gree/(C)ancel: <font color=red>**按A同意**</font>
+(A)gree/(C)ancel: #按A同意
 ```
 ```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
 ```
@@ -63,7 +63,7 @@ Foundation, a founding partner of the Let's Encrypt project and the non-profit
 organization that develops Certbot? We'd like to send you email about our work
 encrypting the web, EFF news, campaigns, and ways to support digital freedom.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-(Y)es/(N)o: <font color=red>**按N不订阅新闻**</font>
+(Y)es/(N)o: #按N不订阅新闻
 ```
 ```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
 ```
@@ -79,7 +79,7 @@ your server, please ensure you're okay with that.
 
 Are you OK with your IP being logged?
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-(Y)es/(N)o: <font color=red>**按Y同意**</font>
+(Y)es/(N)o: #按Y同意
 ```
 ```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
 ```
@@ -91,12 +91,12 @@ SORJ5souY0hVvQVASTSukwo405st02tikA-TAUIAzqk
 Before continuing, verify the record is deployed.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Press Enter to Continue
-<font color=red>**此处不要按回车，复制value并在域名提供商或者DNS提供商处新增一条record,如下图**</font>
+#此处不要按回车，复制value并在域名提供商或者DNS提供商处新增一条record,如下图
 ```
-![新增record](img/in-post/2020-06-22/acme-challenge.png "新增record")<br>
+![新增record](/img/in-post/2020-06-22/acme-challenge.png "新增record")<br>
 
-<font color=red>record建好后，另开一个ssh窗口并连接到服务器，用dig命令检查新增的record是否生效，域名提供商namesilo一般要15分钟左右生效。</font>
-```applescript
+record建好后，另开一个ssh窗口并连接到服务器，用dig命令检查新增的record是否生效，域名提供商namesilo一般要15分钟左右生效。
+```
 dig -t txt _acme-challenge.domain.com @8.8.8.8
 
 ; <<>> DiG 9.11.3-1ubuntu1.12-Ubuntu <<>> -t txt _acme-challenge.domain.com @8.8.8.8
@@ -136,7 +136,7 @@ SORJ5souY0hVvQVASTSukwo405st02tikA-TAUIAzqk
 
 Before continuing, verify the record is deployed.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-Press Enter to Continue  <font color=red>**按回车继续**</font>
+Press Enter to Continue  #按回车继续
 Waiting for verification...
 Cleaning up challenges
 
