@@ -130,7 +130,7 @@ _acme-challenge.domain.com. 7206 IN  TXT "qze5qLa0my0rb8q_fPTTbD_TE5B3gZovQBuBNO
 ```
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Please deploy a DNS TXT record under the name
-_acme-challenge.willynn.com with the following value:
+_acme-challenge.domain.com with the following value:
 
 SORJ5souY0hVvQVASTSukwo405st02tikA-TAUIAzqk
 
@@ -142,9 +142,9 @@ Cleaning up challenges
 
 IMPORTANT NOTES:
  - Congratulations! Your certificate and chain have been saved at:
-   /etc/letsencrypt/live/willynn.com/fullchain.pem
+   /etc/letsencrypt/live/domain.com/fullchain.pem
    Your key file has been saved at:
-   /etc/letsencrypt/live/willynn.com/privkey.pem
+   /etc/letsencrypt/live/domain.com/privkey.pem
    Your cert will expire on 2020-09-20. To obtain a new or tweaked
    version of this certificate in the future, simply run certbot
    again. To non-interactively renew *all* of your certificates, run
