@@ -95,7 +95,7 @@ Press Enter to Continue
 ```
 ![新增record](img/in-post/2020-06-22/acme-challenge.png "新增record")<br>
 
-<font color=red>**record建好后，另开一个ssh窗口并连接到服务器，用dig命令检查新增的record是否生效，域名提供商namesilo一般要15分钟左右生效。**</font>
+<font color=red>record建好后，另开一个ssh窗口并连接到服务器，用dig命令检查新增的record是否生效，域名提供商namesilo一般要15分钟左右生效。</font>
 ```
 dig -t txt _acme-challenge.domain.com @8.8.8.8
 
