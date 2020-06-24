@@ -38,6 +38,7 @@ root@kr2:/home/ubuntu# apt-get install certbot python3-certbot-nginx
 <br>
 
 ### 申请证书
+参考文档 https://www.jianshu.com/p/c5c9d071e395
 ```
 root@kr2:/home/ubuntu# certbot certonly -d "*.domain.com" --manual --preferred-challenges dns-01   
 # 无需使用server参数来指定ACME Directory Resource URI,默认即为https://acme-v02.api.letsencrypt.org/directory
@@ -193,3 +194,4 @@ server {
 
 ### 更新证书
 待续
+
