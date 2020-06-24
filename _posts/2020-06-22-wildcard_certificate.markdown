@@ -39,9 +39,7 @@ apt-get update
 ```
 certbot certonly -d "*.domain.com" --manual --preferred-challenges dns-01   
 # 无需使用server参数来指定ACME Directory Resource URI,默认即为https://acme-v02.api.letsencrypt.org/directory
-```
-```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
-```
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator manual, Installer None
 Enter email address (used for urgent renewal and security notices) (Enter 'c' to
