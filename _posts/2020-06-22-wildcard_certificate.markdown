@@ -32,7 +32,9 @@ apt-get update
 <br>
 
 安装certbot<br>
-```apt-get install certbot python3-certbot-nginx```
+```
+apt-get install certbot python3-certbot-nginx
+```
 <br>
 
 ### 申请证书
