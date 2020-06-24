@@ -39,38 +39,30 @@ apt-get update
 ```
 certbot certonly -d "*.domain.com" --manual --preferred-challenges dns-01   
 # 无需使用server参数来指定ACME Directory Resource URI,默认即为https://acme-v02.api.letsencrypt.org/directory
-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
 Plugins selected: Authenticator manual, Installer None
 Enter email address (used for urgent renewal and security notices) (Enter 'c' to
 cancel): #在此填入邮箱地址
-```
-```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
-```
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Please read the Terms of Service at
 https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
 agree in order to register with the ACME server at
 https://acme-v02.api.letsencrypt.org/directory
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 (A)gree/(C)ancel: #按A同意
-```
-```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
-```
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Would you be willing to share your email address with the Electronic Frontier
 Foundation, a founding partner of the Let's Encrypt project and the non-profit
 organization that develops Certbot? We'd like to send you email about our work
 encrypting the web, EFF news, campaigns, and ways to support digital freedom.
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 (Y)es/(N)o: #按N不订阅新闻
-```
-```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
-```
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Obtaining a new certificate
 Performing the following challenges:
 dns-01 challenge for domain.com
-```
-```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
-```
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 NOTE: The IP of this machine will be publicly logged as having requested this
 certificate. If you're running certbot in manual mode on a machine that is not
 your server, please ensure you're okay with that.
@@ -78,9 +70,7 @@ your server, please ensure you're okay with that.
 Are you OK with your IP being logged?
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 (Y)es/(N)o: #按Y同意
-```
-```- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ```
-```
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Please deploy a DNS TXT record under the name
 _acme-challenge.domain.com with the following value:
 
