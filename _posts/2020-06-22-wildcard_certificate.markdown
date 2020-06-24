@@ -21,25 +21,25 @@ tags:
 Nginx on Ubuntu 18.04 LTS (bionic)<br>
 
 ### 安装certbot
-添加certbot PPA到repository
+添加certbot PPA到repository(不同环境安装步骤不同，详见https://certbot.eff.org/instructions)
 ```
-apt-get update
-apt-get install software-properties-common
-add-apt-repository universe
-add-apt-repository ppa:certbot/certbot
-apt-get update
+root@kr2:/home/ubuntu# apt-get update
+root@kr2:/home/ubuntu# apt-get install software-properties-common
+root@kr2:/home/ubuntu# add-apt-repository universe
+root@kr2:/home/ubuntu# add-apt-repository ppa:certbot/certbot
+root@kr2:/home/ubuntu# apt-get update
 ```
 <br>
 
 安装certbot<br>
 ```
-apt-get install certbot python3-certbot-nginx
+root@kr2:/home/ubuntu# apt-get install certbot python3-certbot-nginx
 ```
 <br>
 
 ### 申请证书
 ```
-certbot certonly -d "*.domain.com" --manual --preferred-challenges dns-01   
+root@kr2:/home/ubuntu# certbot certonly -d "*.domain.com" --manual --preferred-challenges dns-01   
 # 无需使用server参数来指定ACME Directory Resource URI,默认即为https://acme-v02.api.letsencrypt.org/directory
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 Saving debug log to /var/log/letsencrypt/letsencrypt.log
@@ -87,7 +87,7 @@ Press Enter to Continue
 
 record建好后，另开一个ssh窗口并连接到服务器，用dig命令检查新增的record是否生效，域名提供商namesilo一般要15分钟左右生效。
 ```
-dig -t txt _acme-challenge.domain.com @8.8.8.8
+root@kr2:/home/ubuntu# dig -t txt _acme-challenge.domain.com @8.8.8.8
 
 ; <<>> DiG 9.11.3-1ubuntu1.12-Ubuntu <<>> -t txt _acme-challenge.domain.com @8.8.8.8
 ;; global options: +cmd
