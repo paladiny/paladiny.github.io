@@ -161,3 +161,42 @@ IMPORTANT NOTES:
 
 ```
 到此，证书申请成功
+
+### nginx配置
+修改nginx配置才可使用https进行访问站点。
+编辑nginx配置文件/etc/nginx/sites-available/default，配置证书地址和443端口监听
+```
+server {
+        listen 443 ssl default_server;
+        listen [::]:443 ssl default_server;
+
+        ssl_certificate /etc/letsencrypt/live/domain.com/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/domain.com/privkey.pem;
+
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name kr2.domain.com;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+        }
+
+}
+```
+增加http强行跳转https配置
+```
+server {
+    if ($host = kr2.domain.com) {
+        return 301 https://$host$request_uri;
+    }
+
+
+        listen 80 ;
+        listen [::]:80 ;
+    server_name kr2.domain.com;
+    return 404;
+}
+```
